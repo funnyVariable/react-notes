@@ -1,0 +1,22 @@
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.notes div {
+  padding: 18px;
+  background-color: rgb(0, 0, 255, 0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 80px;
+  width: 324px;
+  cursor: pointer;
+}
+
+@media (max-width: 340px) {
+  .notes div {
+    width: 100%;
+  }
+}
