@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 8px;
   padding: 8px;
+  width: 100%;
 }
 
 .notes div {
@@ -11,12 +12,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 80px;
-  width: 324px;
+  max-width: 324px;
   cursor: pointer;
-}
-
-@media (max-width: 340px) {
-  .notes div {
-    width: 100%;
-  }
 }

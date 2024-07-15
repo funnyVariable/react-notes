@@ -1,0 +1,8 @@
+.editor {
+  width: 100%;
+}
+
+.editor textarea {
+  resize: none;
+  width: 100%;
+}
