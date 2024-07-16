@@ -18,20 +18,23 @@ export default function SliderProvider({ children }) {
     if (holdingSlider) {
       sliderPos = e.clientX;
       sliderWidth = slider.current.offsetWidth;
-      let editorThreshold = window.innerWidth - 100 - sliderWidth;
-      notesWidth = sliderPos > 100 ? sliderPos : 100;
+
+      let threshold = 148;
+      let editorThreshold = window.innerWidth - threshold - sliderWidth;
+
+      notesWidth = sliderPos > threshold ? sliderPos : threshold;
       editorWidth = window.innerWidth - notesWidth - sliderWidth;
 
       if (sliderPos < editorThreshold) {
         document.getElementsByClassName(
           "app"
-        )[0].style.gridTemplateColumns = `${notesWidth}px 5px auto`;
+        )[0].style.gridTemplateColumns = `${notesWidth}px 12px auto`;
       }
 
       if (sliderPos < editorThreshold) {
         document.getElementsByClassName(
           "app"
-        )[0].style.gridTemplateColumns = `auto 5px ${editorWidth}px`;
+        )[0].style.gridTemplateColumns = `auto 12px ${editorWidth}px`;
       }
     }
   };

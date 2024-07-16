@@ -1,8 +1,44 @@
 .editor {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(152, 181, 236, 0.1);
 }
-
+.editor .tabs {
+  background-color: #eee;
+  height: 40px;
+  display: flex;
+  overflow-x: auto;
+}
+.editor .tabs::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.editor .tabs div {
+  padding: 10px;
+  padding-right: 20px;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: rgb(157, 178, 216, 0.3);
+  flex-shrink: 0;
+  position: relative;
+  border-right: solid 1px #777;
+}
+.editor .tabs div img {
+  width: 20px;
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .editor textarea {
   resize: none;
   width: 100%;
+  border: none;
+  outline: none;
+  height: calc(100% - 40px);
+  border-top: solid 1px #777;
+  font-size: 18px;
 }

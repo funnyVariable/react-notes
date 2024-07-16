@@ -2,6 +2,7 @@ import Notes from "./Notes";
 import Editor from "./Editor";
 import { useContext } from "react";
 import { SliderContext } from "./SliderContext";
+import bars from "./bars.svg";
 
 // CSS
 import "./Normalize.css";
@@ -24,7 +25,9 @@ function App() {
           setHoldingSlider((prev) => !prev);
           console.log(holdingSlider);
         }}
-      ></div>
+      >
+        <img src={bars} alt="" />
+      </div>
       <Editor />
     </div>
   );
