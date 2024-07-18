@@ -9,6 +9,7 @@
   height: 40px;
   display: flex;
   overflow-x: auto;
+  position: relative;
 }
 .editor .tabs::-webkit-scrollbar {
   display: none;
@@ -25,6 +26,8 @@
   flex-shrink: 0;
   position: relative;
   border-right: solid 1px #777;
+  user-select: none;
+  cursor: pointer;
 }
 .editor .tabs div img {
   width: 20px;
@@ -41,4 +44,20 @@
   height: calc(100% - 40px);
   border-top: solid 1px #777;
   font-size: 18px;
+}
+
+.editor .tabs .active-scroll-area {
+  position: fixed;
+  height: inherit;
+  background-color: rgba(0, 0, 255, 0.3);
+  width: 50px;
+  opacity: 0;
+  z-index: 1;
+}
+.editor .tabs .active-scroll-area:hover {
+  opacity: 1;
+}
+
+.editor .tabs .active-scroll-area:last-of-type {
+  right: 0;
 }

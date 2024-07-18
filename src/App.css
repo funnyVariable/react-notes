@@ -1,6 +1,6 @@
 .app {
   display: grid;
-  grid-template-columns: calc(30% - 12px) 12px 70%;
+  grid-template-columns: calc(40% - 12px) 12px 60%;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -20,6 +20,7 @@
   overflow: hidden;
   border-left: solid rgb(147, 155, 172) 3px;
   border-right: solid rgb(147, 155, 172) 3px;
+  user-select: none;
 }
 .slider img {
   display: block;

@@ -12,19 +12,16 @@ import "./Editor.css";
 
 function App() {
   const setHoldingSlider = useContext(SliderContext).setHoldingSlider;
-  const holdingSlider = useContext(SliderContext).holdingSlider;
   const slider = useContext(SliderContext).slider;
+  const app = useContext(SliderContext).app;
 
   return (
-    <div className="app">
+    <div className="app" ref={app}>
       <Notes />
       <div
         className="slider"
         ref={slider}
-        onMouseDown={() => {
-          setHoldingSlider((prev) => !prev);
-          console.log(holdingSlider);
-        }}
+        onMouseDown={() => setHoldingSlider((prev) => !prev)}
       >
         <img src={bars} alt="" />
       </div>
