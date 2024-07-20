@@ -49,16 +49,8 @@
 .editor .tabs .active-scroll-area {
   position: fixed;
   height: inherit;
-  background-color: rgba(0, 255, 0, 0.3);
   width: 40px;
-  /* opacity: 0; */
   z-index: 1;
-}
-.editor .tabs .active-scroll-area:nth-child(even) {
-  background-color: rgba(255, 0, 0, 0.3);
-}
-.editor .tabs .active-scroll-area:hover {
-  opacity: 1;
 }
 
 .editor .tabs .active-scroll-area:last-of-type {
@@ -66,4 +58,18 @@
 }
 .editor .tabs .active-scroll-area:nth-of-type(3) {
   right: 40px;
+}
+
+.tabs i {
+  height: 40px;
+  width: 40px;
+  position: fixed;
+}
+
+.scrolling-right > .scroll-effect {
+  right: 0;
+  background: linear-gradient(to left, rgba(100, 148, 237, 0.7), transparent);
+}
+.scrolling-left > .scroll-effect {
+  background: linear-gradient(to right, rgba(100, 148, 237, 0.7), transparent);
 }

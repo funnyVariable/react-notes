@@ -9,6 +9,7 @@ export default function Editor() {
   const scrollAreaRight = useRef(null);
   const fastScrollAreaLeft = useRef(null);
   const fastScrollAreaRight = useRef(null);
+  const scrollLight = useRef(null);
 
   let scrollInterval;
 
@@ -21,14 +22,21 @@ export default function Editor() {
         tabs.current.scrollLeft += fast ? 5 : 1;
       }
     }, 25);
+
+    tabs.current.classList.add(
+      direction === "left" ? "scrolling-left" : "scrolling-right"
+    );
+    scrollLight.current.classList.add("scroll-effect");
   }
   function stopScrolling(interval) {
     clearInterval(interval);
+    tabs.current.classList.remove("scrolling-left", "scrolling-right");
+    scrollLight.current.classList.remove("scroll-effect");
   }
 
   useEffect(() => {
     let totalTabsWidth = 0;
-    for (let i = 4; i < tabs.current.children.length; i++) {
+    for (let i = 5; i < tabs.current.children.length; i++) {
       totalTabsWidth += tabs.current.children[i].offsetWidth;
     }
 
@@ -56,6 +64,7 @@ export default function Editor() {
   return (
     <div className="editor" ref={editor}>
       <div className="tabs" ref={tabs}>
+        <i ref={scrollLight}></i>
         <span
           ref={scrollAreaLeft}
           onMouseEnter={() => scroll("left")}
