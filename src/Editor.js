@@ -22,16 +22,22 @@ export default function Editor() {
   const fastScrollAreaRight = useRef(null);
   const scrollLight = useRef(null);
 
+  const [noteTitle, setNoteTitle] = useState("");
   const [input, setInput] = useState("");
-  function inputHandler(e) {
-    setInput(e.target.value);
-    console.log(input);
-  }
 
   function save() {
-    let number = notes.length + 1;
-    localStorage.setItem(`note${number}`, input);
-    setNotes((prev) => [...prev, input]);
+    const number = notes.length + 1;
+    const date = new Date();
+    const timeStamp = `${date.getFullYear()}/${
+      date.getMonth() + 1
+    }/${date.getDate()}`;
+    const newNote = {
+      title: noteTitle === "" ? "Untitled" : noteTitle,
+      text: input,
+      date: timeStamp,
+    };
+    localStorage.setItem(`note${number}`, JSON.stringify(newNote));
+    setNotes((prev) => [...prev, newNote]);
   }
 
   let scrollInterval;
@@ -128,7 +134,16 @@ export default function Editor() {
           </div>
         ))}
       </div>
-      <textarea onChange={inputHandler}></textarea>
+      <input
+        onChange={(e) => setNoteTitle(e.target.value)}
+        value={noteTitle}
+        type="text"
+        placeholder="Title"
+      />
+      <textarea
+        onChange={(e) => setInput(e.target.value)}
+        value={input}
+      ></textarea>
       <button className="save-button" onClick={save}>
         Save
       </button>

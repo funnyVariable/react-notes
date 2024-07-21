@@ -6,7 +6,9 @@ export default function Notes() {
   return (
     <div className="notes">
       {notes.map((note, key) => (
-        <div key={key}>{note}</div>
+        <div key={key} date={note.date}>
+          {note.title}
+        </div>
       ))}
     </div>
   );

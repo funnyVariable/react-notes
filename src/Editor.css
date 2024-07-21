@@ -36,9 +36,17 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.editor input {
+  font-size: 28px;
+  border: none;
+  border-top: solid 1px #777;
+  outline: none;
+  padding: 8px;
+}
 .editor textarea {
   resize: none;
   width: 100%;
+  padding: 8px;
   border: none;
   outline: none;
   height: calc(100% - 40px);

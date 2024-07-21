@@ -38,7 +38,7 @@
   left: 0;
 }
 .notes div::after {
-  content: "2012/5/29";
+  content: attr(date);
   display: block;
   position: absolute;
   top: 50%;
