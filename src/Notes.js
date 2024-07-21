@@ -1,10 +1,13 @@
+import { useContext } from "react";
+import { NotesContext } from "./NotesContext";
+
 export default function Notes() {
+  const notes = useContext(NotesContext).notes;
   return (
     <div className="notes">
-      <div>Note1</div>
-      <div>Note2</div>
-      <div>Note3</div>
-      <div>Note4</div>
+      {notes.map((note, key) => (
+        <div key={key}>{note}</div>
+      ))}
     </div>
   );
 }

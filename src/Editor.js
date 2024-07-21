@@ -31,6 +31,7 @@ export default function Editor() {
   function save() {
     let number = notes.length + 1;
     localStorage.setItem(`note${number}`, input);
+    setNotes((prev) => [...prev, input]);
   }
 
   let scrollInterval;
