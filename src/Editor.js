@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import xmark from "./xmark.svg";
+import { NotesContext } from "./NotesContext";
 
 export default function Editor() {
   const editor = useRef(null);
   const tabBar = useRef(null);
+  const notes = useContext(NotesContext).notes;
+  const setNotes = useContext(NotesContext).setNotes;
   const [tabs, setTabs] = useState([
     { title: "tab1" },
     { title: "tab2" },
@@ -25,6 +28,11 @@ export default function Editor() {
     console.log(input);
   }
 
+  function save() {
+    let number = notes.length + 1;
+    localStorage.setItem(`note${number}`, input);
+  }
+
   let scrollInterval;
   let tabsOverflow = false;
   let totalTabsWidth = 0;
@@ -39,7 +47,6 @@ export default function Editor() {
       }
     }, 25);
 
-    console.log(tabsOverflow);
     if (tabsOverflow) {
       tabBar.current.classList.add(
         direction === "left" ? "scrolling-left" : "scrolling-right"
@@ -67,7 +74,7 @@ export default function Editor() {
       fastScrollAreaLeft.current.classList.add("active-scroll-area", "fast");
       fastScrollAreaRight.current.classList.add("active-scroll-area", "fast");
 
-      scrollAreaLeft.current.style.left = `${tabBar.current.offsetLeft + 40}px`;
+      scrollAreaLeft.current.style.left = `${tabBar.current.offsetLeft + 20}px`;
       fastScrollAreaLeft.current.style.left = `${tabBar.current.offsetLeft}px`;
     } else {
       tabsOverflow = false;
@@ -121,6 +128,9 @@ export default function Editor() {
         ))}
       </div>
       <textarea onChange={inputHandler}></textarea>
+      <button className="save-button" onClick={save}>
+        Save
+      </button>
     </div>
   );
 }
