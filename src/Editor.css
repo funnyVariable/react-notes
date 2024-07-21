@@ -4,19 +4,19 @@
   flex-direction: column;
   background-color: rgba(152, 181, 236, 0.1);
 }
-.editor .tabs {
+.editor .tab-bar {
   background-color: #eee;
   height: 40px;
   display: flex;
   overflow-x: auto;
   position: relative;
 }
-.editor .tabs::-webkit-scrollbar {
+.editor .tab-bar::-webkit-scrollbar {
   display: none;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-.editor .tabs div {
+.editor .tab-bar div {
   padding: 10px;
   padding-right: 20px;
   width: 100px;
@@ -29,7 +29,7 @@
   user-select: none;
   cursor: pointer;
 }
-.editor .tabs div img {
+.editor .tab-bar div img {
   width: 20px;
   position: absolute;
   right: 3px;
@@ -46,21 +46,21 @@
   font-size: 18px;
 }
 
-.editor .tabs .active-scroll-area {
+.editor .tab-bar .active-scroll-area {
   position: fixed;
   height: inherit;
   width: 40px;
   z-index: 1;
 }
 
-.editor .tabs .active-scroll-area:last-of-type {
+.editor .tab-bar .active-scroll-area:last-of-type {
   right: 0;
 }
-.editor .tabs .active-scroll-area:nth-of-type(3) {
+.editor .tab-bar .active-scroll-area:nth-of-type(3) {
   right: 40px;
 }
 
-.tabs i {
+.tab-bar i {
   height: 40px;
   width: 40px;
   position: fixed;

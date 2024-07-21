@@ -3,7 +3,15 @@ import xmark from "./xmark.svg";
 
 export default function Editor() {
   const editor = useRef(null);
-  const tabs = useRef(null);
+  const tabBar = useRef(null);
+  const [tabs, setTabs] = useState([
+    { title: "tab1" },
+    { title: "tab2" },
+    { title: "tab3" },
+    { title: "tab4444444444444444444" },
+    { title: "tab5" },
+    { title: "tab6" },
+  ]);
 
   const scrollAreaLeft = useRef(null);
   const scrollAreaRight = useRef(null);
@@ -11,45 +19,59 @@ export default function Editor() {
   const fastScrollAreaRight = useRef(null);
   const scrollLight = useRef(null);
 
+  const [input, setInput] = useState("");
+  function inputHandler(e) {
+    setInput(e.target.value);
+    console.log(input);
+  }
+
   let scrollInterval;
+  let tabsOverflow = false;
+  let totalTabsWidth = 0;
 
   function scroll(direction, fast) {
     scrollInterval = setInterval(() => {
       if (direction === "left") {
-        tabs.current.scrollLeft -= fast ? 5 : 1;
+        tabBar.current.scrollLeft -= fast ? 5 : 1;
       }
       if (direction === "right") {
-        tabs.current.scrollLeft += fast ? 5 : 1;
+        tabBar.current.scrollLeft += fast ? 5 : 1;
       }
     }, 25);
 
-    tabs.current.classList.add(
-      direction === "left" ? "scrolling-left" : "scrolling-right"
-    );
-    scrollLight.current.classList.add("scroll-effect");
+    console.log(tabsOverflow);
+    if (tabsOverflow) {
+      tabBar.current.classList.add(
+        direction === "left" ? "scrolling-left" : "scrolling-right"
+      );
+      scrollLight.current.classList.add("scroll-effect");
+    }
   }
   function stopScrolling(interval) {
     clearInterval(interval);
-    tabs.current.classList.remove("scrolling-left", "scrolling-right");
+    tabBar.current.classList.remove("scrolling-left", "scrolling-right");
     scrollLight.current.classList.remove("scroll-effect");
   }
 
   useEffect(() => {
-    let totalTabsWidth = 0;
-    for (let i = 5; i < tabs.current.children.length; i++) {
-      totalTabsWidth += tabs.current.children[i].offsetWidth;
+    for (let i = 5; i < tabBar.current.children.length; i++) {
+      totalTabsWidth += tabBar.current.children[i].offsetWidth;
     }
 
-    if (totalTabsWidth > tabs.current.offsetWidth) {
+    if (totalTabsWidth > tabBar.current.offsetWidth) {
+      tabsOverflow = true;
+
       scrollAreaLeft.current.classList.add("active-scroll-area");
       scrollAreaRight.current.classList.add("active-scroll-area");
 
       fastScrollAreaLeft.current.classList.add("active-scroll-area", "fast");
       fastScrollAreaRight.current.classList.add("active-scroll-area", "fast");
 
-      scrollAreaLeft.current.style.left = `${tabs.current.offsetLeft + 40}px`;
-      fastScrollAreaLeft.current.style.left = `${tabs.current.offsetLeft}px`;
+      scrollAreaLeft.current.style.left = `${tabBar.current.offsetLeft + 40}px`;
+      fastScrollAreaLeft.current.style.left = `${tabBar.current.offsetLeft}px`;
     } else {
+      tabsOverflow = false;
+
       scrollAreaLeft.current.classList.remove("active-scroll-area");
       scrollAreaRight.current.classList.remove("active-scroll-area");
 
@@ -59,11 +81,11 @@ export default function Editor() {
         "fast"
       );
     }
-  });
+  }, [tabs]);
 
   return (
     <div className="editor" ref={editor}>
-      <div className="tabs" ref={tabs}>
+      <div className="tab-bar" ref={tabBar}>
         <i ref={scrollLight}></i>
         <span
           ref={scrollAreaLeft}
@@ -85,36 +107,20 @@ export default function Editor() {
           onMouseEnter={() => scroll("right", true)}
           onMouseLeave={() => stopScrolling(scrollInterval)}
         ></span>
-        <div>
-          tab1
-          <img src={xmark} alt="" />
-        </div>
-        <div>
-          tab2
-          <img src={xmark} alt="" />
-        </div>
-        <div>
-          tab333333333333333333333333
-          <img src={xmark} alt="" />
-        </div>
-        <div>
-          tab4
-          <img src={xmark} alt="" />
-        </div>
-        <div>
-          tab5
-          <img src={xmark} alt="" />
-        </div>
-        <div>
-          tab6
-          <img src={xmark} alt="" />
-        </div>
-        <div>
-          tab7
-          <img src={xmark} alt="" />
-        </div>
+        {tabs.map((tab, key) => (
+          <div key={key}>
+            {tab.title}
+            <img
+              src={xmark}
+              alt=""
+              onClick={() =>
+                setTabs((prev) => prev.filter((tab2, key2) => key2 !== key))
+              }
+            />
+          </div>
+        ))}
       </div>
-      <textarea></textarea>
+      <textarea onChange={inputHandler}></textarea>
     </div>
   );
 }
