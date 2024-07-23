@@ -11,9 +11,12 @@ export default function NotesProvider({ children }) {
   }
 
   const [notes, setNotes] = useState(noteArray);
-  console.log(notes);
+  const [currentNote, setCurrentNote] = useState(null);
+  console.log(currentNote);
   return (
-    <NotesContext.Provider value={{ notes, setNotes }}>
+    <NotesContext.Provider
+      value={{ notes, setNotes, currentNote, setCurrentNote }}
+    >
       {children}
     </NotesContext.Provider>
   );

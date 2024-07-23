@@ -1,20 +1,20 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import xmark from "./xmark.svg";
 import { NotesContext } from "./NotesContext";
+import { EditorContext } from "./EditorContext";
 
 export default function Editor() {
   const editor = useRef(null);
   const tabBar = useRef(null);
+
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
-  const [tabs, setTabs] = useState([
-    { title: "tab1" },
-    { title: "tab2" },
-    { title: "tab3" },
-    { title: "tab4444444444444444444" },
-    { title: "tab5" },
-    { title: "tab6" },
-  ]);
+  const currentNote = useContext(NotesContext).currentNote;
+  const setCurrentNote = useContext(NotesContext).setCurrentNote;
+
+  const tabs = useContext(EditorContext).tabs;
+  const setTabs = useContext(EditorContext).setTabs;
+  // const currentTab = useContext
 
   const scrollAreaLeft = useRef(null);
   const scrollAreaRight = useRef(null);
@@ -96,6 +96,13 @@ export default function Editor() {
       );
     }
   }, [tabs]);
+
+  useEffect(() => {
+    if (currentNote) {
+      setInput(currentNote.text);
+      setNoteTitle(currentNote.title);
+    }
+  }, [currentNote]);
 
   return (
     <div className="editor" ref={editor}>
