@@ -10,11 +10,11 @@ export default function Editor() {
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const currentNote = useContext(NotesContext).currentNote;
-  const setCurrentNote = useContext(NotesContext).setCurrentNote;
 
   const tabs = useContext(EditorContext).tabs;
   const setTabs = useContext(EditorContext).setTabs;
-  // const currentTab = useContext
+  const currentTab = useContext(EditorContext).currentTab;
+  const setCurrentTab = useContext(EditorContext).setCurrentTab;
 
   const scrollAreaLeft = useRef(null);
   const scrollAreaRight = useRef(null);
@@ -134,9 +134,10 @@ export default function Editor() {
             <img
               src={xmark}
               alt=""
-              onClick={() =>
-                setTabs((prev) => prev.filter((tab2, key2) => key2 !== key))
-              }
+              onClick={(e) => {
+                setTabs((prev) => prev.filter((tab2, key2) => key2 !== key));
+                e.stopPropagation();
+              }}
             />
           </div>
         ))}
