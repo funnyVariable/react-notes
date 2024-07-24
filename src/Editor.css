@@ -70,9 +70,12 @@
 }
 
 .tab-bar i {
-  height: 40px;
+  height: 36.5px;
   width: 20px;
   position: fixed;
+}
+.editor .tab-bar .current-tab {
+  background-color: #eee;
 }
 
 .scrolling-right > .scroll-effect {

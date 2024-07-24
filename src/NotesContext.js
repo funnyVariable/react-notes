@@ -12,7 +12,7 @@ export default function NotesProvider({ children }) {
 
   const [notes, setNotes] = useState(noteArray);
   const [currentNote, setCurrentNote] = useState(null);
-  console.log(currentNote);
+
   return (
     <NotesContext.Provider
       value={{ notes, setNotes, currentNote, setCurrentNote }}

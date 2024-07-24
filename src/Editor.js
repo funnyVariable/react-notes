@@ -35,6 +35,7 @@ export default function Editor() {
       title: noteTitle === "" ? "Untitled" : noteTitle,
       text: input,
       date: timeStamp,
+      id: number,
     };
     localStorage.setItem(`note${number}`, JSON.stringify(newNote));
     setNotes((prev) => [...prev, newNote]);
@@ -129,7 +130,11 @@ export default function Editor() {
           onMouseLeave={() => stopScrolling(scrollInterval)}
         ></span>
         {tabs.map((tab, key) => (
-          <div key={key}>
+          <div
+            key={key}
+            onClick={() => setCurrentTab(key)}
+            className={tab.note.id === currentTab ? "current-tab" : ""}
+          >
             {tab.title}
             <img
               src={xmark}
