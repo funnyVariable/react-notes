@@ -10,6 +10,7 @@ export default function Editor() {
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const currentNote = useContext(NotesContext).currentNote;
+  const setCurrentNote = useContext(NotesContext).setCurrentNote;
 
   const tabs = useContext(EditorContext).tabs;
   const setTabs = useContext(EditorContext).setTabs;
@@ -132,8 +133,12 @@ export default function Editor() {
         {tabs.map((tab, key) => (
           <div
             key={key}
-            onClick={() => setCurrentTab(key)}
-            className={tab.note.id === currentTab ? "current-tab" : ""}
+            onClick={() => {
+              setCurrentTab(tab.id);
+              setCurrentNote(tab.note);
+              console.log(tabs);
+            }}
+            className={tab.id === currentTab ? "current-tab" : ""}
           >
             {tab.title}
             <img
