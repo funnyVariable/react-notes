@@ -14,8 +14,11 @@ export default function Editor() {
 
   const tabs = useContext(EditorContext).tabs;
   const setTabs = useContext(EditorContext).setTabs;
-  const currentTab = useContext(EditorContext).currentTab;
-  const setCurrentTab = useContext(EditorContext).setCurrentTab;
+  const currentTabId = useContext(EditorContext).currentTabId;
+  const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
+  const getTabIndexById = useContext(EditorContext).getTabIndexById;
+  const getTabById = useContext(EditorContext).getTabById;
+  const currentTab = getTabById(currentTabId);
 
   const scrollAreaLeft = useRef(null);
   const scrollAreaRight = useRef(null);
@@ -24,7 +27,9 @@ export default function Editor() {
   const scrollLight = useRef(null);
 
   const [noteTitle, setNoteTitle] = useState("");
-  const [input, setInput] = useState("");
+  const [currentInput, setCurrentInput] = useState(
+    currentTab ? currentTab.input : ""
+  );
 
   function save() {
     const number = notes.length + 1;
@@ -34,7 +39,7 @@ export default function Editor() {
     }/${date.getDate()}`;
     const newNote = {
       title: noteTitle === "" ? "Untitled" : noteTitle,
-      text: input,
+      text: currentInput,
       date: timeStamp,
       id: number,
     };
@@ -101,7 +106,9 @@ export default function Editor() {
 
   useEffect(() => {
     if (currentNote) {
-      setInput(currentNote.text);
+      currentTab && currentTab.input
+        ? setCurrentInput(currentTab.input)
+        : setCurrentInput(currentNote.text);
       setNoteTitle(currentNote.title);
     }
   }, [currentNote]);
@@ -134,11 +141,11 @@ export default function Editor() {
           <div
             key={key}
             onClick={() => {
-              setCurrentTab(tab.id);
+              setCurrentTabId(tab.id);
               setCurrentNote(tab.note);
               console.log(tabs);
             }}
-            className={tab.id === currentTab ? "current-tab" : ""}
+            className={tab.id === currentTabId ? "current-tab" : ""}
           >
             {tab.title}
             <img
@@ -159,8 +166,17 @@ export default function Editor() {
         placeholder="Title"
       />
       <textarea
-        onChange={(e) => setInput(e.target.value)}
-        value={input}
+        onChange={(e) => {
+          setCurrentInput(e.target.value);
+          setTabs((prev) => {
+            let prevv = prev;
+            if (prevv.length !== 0)
+              prevv[getTabIndexById(currentTabId)].input = e.target.value;
+            console.log(tabs);
+            return prevv;
+          });
+        }}
+        value={currentInput}
       ></textarea>
       <button className="save-button" onClick={save}>
         Save

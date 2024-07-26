@@ -8,14 +8,14 @@ export default function Notes() {
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
 
   const setTabs = useContext(EditorContext).setTabs;
-  const setCurrentTab = useContext(EditorContext).setCurrentTab;
+  const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
   const doesTabExist = useContext(EditorContext).doesTabExist;
 
   function selectNote(note) {
     setCurrentNote(note);
-    setCurrentTab(note.id);
+    setCurrentTabId(note.id);
     doesTabExist(note)
-      ? setCurrentTab(note.id)
+      ? setCurrentTabId(note.id)
       : setTabs((prev) => [
           ...prev,
           { title: note.title, note: note, id: note.id },

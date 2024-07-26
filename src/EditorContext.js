@@ -4,7 +4,7 @@ export const EditorContext = createContext(null);
 
 export default function EditorProvider({ children }) {
   const [tabs, setTabs] = useState([]);
-  const [currentTab, setCurrentTab] = useState(null);
+  const [currentTabId, setCurrentTabId] = useState(null);
 
   function doesTabExist(note) {
     let tabExist = false;
@@ -14,9 +14,32 @@ export default function EditorProvider({ children }) {
     return tabExist ? true : false;
   }
 
+  function getTabIndexById(id) {
+    let target = null;
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].id === id) target = i;
+    }
+    return target;
+  }
+  function getTabById(id) {
+    let target = null;
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].id === id) target = tabs[i];
+    }
+    return target;
+  }
+
   return (
     <EditorContext.Provider
-      value={{ tabs, setTabs, currentTab, setCurrentTab, doesTabExist }}
+      value={{
+        tabs,
+        setTabs,
+        currentTabId,
+        setCurrentTabId,
+        doesTabExist,
+        getTabById,
+        getTabIndexById,
+      }}
     >
       {children}
     </EditorContext.Provider>
