@@ -8,7 +8,7 @@
   background-color: rgba(152, 181, 236, 0.1);
 }
 
-.notes div {
+.notes .note {
   padding: 17px;
   padding-left: 22px;
   padding-right: 70px;
@@ -23,11 +23,11 @@
   line-break: anywhere;
 }
 
-.notes div:hover {
+.notes .note:hover {
   box-shadow: 0 0 4px rgb(0, 0, 0, 0.5);
 }
 
-.notes div::before {
+.notes .note::before {
   content: "";
   display: block;
   position: absolute;
@@ -37,7 +37,7 @@
   top: 0;
   left: 0;
 }
-.notes div::after {
+.notes .note::after {
   content: attr(date);
   display: block;
   position: absolute;
@@ -46,4 +46,27 @@
   right: 5px;
   color: rgb(122, 122, 122);
   font-size: 14px;
+}
+
+.notes .add-note {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #eeeeee 100%
+  );
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 0 auto;
+  box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.notes .add-note:hover {
+  box-shadow: 0 0 7px rgb(0, 0, 0, 0.5);
+}
+.notes .add-note img {
+  width: 27px;
 }

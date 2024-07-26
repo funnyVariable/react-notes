@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
+import plus from "./plus.svg";
 
 export default function Notes() {
   const notes = useContext(NotesContext).notes;
@@ -29,10 +30,18 @@ export default function Notes() {
   return (
     <div className="notes">
       {notes.map((note, key) => (
-        <div key={key} date={note.date} onClick={() => selectNote(note)}>
+        <div
+          key={key}
+          className="note"
+          date={note.date}
+          onClick={() => selectNote(note)}
+        >
           {note.title}
         </div>
       ))}
+      <div className="add-note">
+        <img src={plus} alt="" />
+      </div>
     </div>
   );
 }
