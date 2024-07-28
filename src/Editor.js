@@ -155,6 +155,13 @@ export default function Editor() {
               alt=""
               onClick={(e) => {
                 setTabs((prev) => prev.filter((tab2, key2) => key2 !== key));
+                if (tabs[key + 1]) {
+                  setCurrentTabId(tabs[key + 1].id);
+                  setCurrentNote(tabs[key + 1].note);
+                } else if (tabs[key - 1]) {
+                  setCurrentTabId(tabs[key - 1].id);
+                  setCurrentNote(tabs[key - 1].note);
+                } else setCurrentTabId(null);
                 e.stopPropagation();
               }}
             />
