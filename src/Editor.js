@@ -109,7 +109,9 @@ export default function Editor() {
       currentTab && currentTab.input
         ? setCurrentInput(currentTab.input)
         : setCurrentInput(currentNote.text);
-      setNoteTitle(currentNote.title);
+      currentTab && currentTab.titleInput
+        ? setNoteTitle(currentTab.titleInput)
+        : setNoteTitle(currentNote.title);
     }
   }, [currentNote]);
 
@@ -160,7 +162,15 @@ export default function Editor() {
         ))}
       </div>
       <input
-        onChange={(e) => setNoteTitle(e.target.value)}
+        onChange={(e) => {
+          setNoteTitle(e.target.value);
+          setTabs((prev) => {
+            let prevv = prev;
+            if (prevv.length !== 0)
+              prevv[getTabIndexById(currentTabId)].titleInput = e.target.value;
+            return prevv;
+          });
+        }}
         value={noteTitle}
         type="text"
         placeholder="Title"
