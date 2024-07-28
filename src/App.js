@@ -9,11 +9,14 @@ import "./Normalize.css";
 import "./App.css";
 import "./Notes.css";
 import "./Editor.css";
+import { EditorContext } from "./EditorContext";
 
 function App() {
   const setHoldingSlider = useContext(SliderContext).setHoldingSlider;
   const slider = useContext(SliderContext).slider;
   const app = useContext(SliderContext).app;
+
+  const tabs = useContext(EditorContext).tabs;
 
   return (
     <div className="app" ref={app}>
@@ -25,7 +28,14 @@ function App() {
       >
         <img src={bars} alt="" />
       </div>
-      <Editor />
+      {tabs.length === 0 ? (
+        <div className="empty">
+          <h2>No notes selected</h2>
+          <p>Select a note from notes menu to read or edit.</p>
+        </div>
+      ) : (
+        <Editor />
+      )}
     </div>
   );
 }
