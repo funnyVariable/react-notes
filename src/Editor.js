@@ -33,7 +33,9 @@ export default function Editor() {
   );
 
   function save() {
-    const id = generateNoteId();
+    const doesNoteExist = localStorage.getItem(`note${currentNote.id}`);
+    const id = doesNoteExist ? currentNote.id : generateNoteId();
+
     const date = new Date();
     const timeStamp = `${date.getFullYear()}/${
       date.getMonth() + 1
@@ -45,7 +47,11 @@ export default function Editor() {
       id: id,
     };
     localStorage.setItem(`note${id}`, JSON.stringify(newNote));
-    setNotes((prev) => [...prev, newNote]);
+    setNotes((prev) =>
+      doesNoteExist
+        ? prev.map((ele) => (ele.id === id ? newNote : ele))
+        : [...prev, newNote]
+    );
   }
 
   let scrollInterval;
