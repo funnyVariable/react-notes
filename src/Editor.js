@@ -11,6 +11,7 @@ export default function Editor() {
   const setNotes = useContext(NotesContext).setNotes;
   const currentNote = useContext(NotesContext).currentNote;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
+  const generateNoteId = useContext(NotesContext).generateNoteId;
 
   const tabs = useContext(EditorContext).tabs;
   const setTabs = useContext(EditorContext).setTabs;
@@ -32,7 +33,7 @@ export default function Editor() {
   );
 
   function save() {
-    const number = notes.length + 1;
+    const id = generateNoteId();
     const date = new Date();
     const timeStamp = `${date.getFullYear()}/${
       date.getMonth() + 1
@@ -41,9 +42,9 @@ export default function Editor() {
       title: noteTitle === "" ? "Untitled" : noteTitle,
       text: currentInput,
       date: timeStamp,
-      id: number,
+      id: id,
     };
-    localStorage.setItem(`note${number}`, JSON.stringify(newNote));
+    localStorage.setItem(`note${id}`, JSON.stringify(newNote));
     setNotes((prev) => [...prev, newNote]);
   }
 
