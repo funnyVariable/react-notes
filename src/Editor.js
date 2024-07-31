@@ -33,8 +33,11 @@ export default function Editor() {
   );
 
   function save() {
-    const doesNoteExist = localStorage.getItem(`note${currentNote.id}`);
+    const doesNoteExist = localStorage.getItem(`note${currentNote.id}`)
+      ? true
+      : false;
     const id = doesNoteExist ? currentNote.id : generateNoteId();
+    console.log(doesNoteExist);
 
     const date = new Date();
     const timeStamp = `${date.getFullYear()}/${
@@ -47,10 +50,12 @@ export default function Editor() {
       id: id,
     };
     localStorage.setItem(`note${id}`, JSON.stringify(newNote));
-    setNotes((prev) =>
-      doesNoteExist
-        ? prev.map((ele) => (ele.id === id ? newNote : ele))
-        : [...prev, newNote]
+    setNotes((prev) => prev.map((ele) => (ele.id === id ? newNote : ele)));
+    setCurrentNote(newNote);
+    setTabs((prev) =>
+      prev.map((ele) =>
+        ele.note.id === id ? { ...currentTab, title: newNote.title } : ele
+      )
     );
   }
 
