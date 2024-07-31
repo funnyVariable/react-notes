@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 import plus from "./plus.svg";
@@ -7,6 +7,7 @@ export default function Notes() {
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
+  const notesRef = useRef(null);
 
   const tabs = useContext(EditorContext).tabs;
 
@@ -44,7 +45,7 @@ export default function Notes() {
   }
 
   return (
-    <div className="notes">
+    <div className="notes" ref={notesRef}>
       {notes.map((note, key) => (
         <div
           key={key}
@@ -55,7 +56,11 @@ export default function Notes() {
           {note.title}
         </div>
       ))}
-      <div className="add-note" onClick={newNote}>
+      <div
+        className="add-note"
+        onClick={newNote}
+        style={{ left: `${notesRef.current?.offsetWidth / 2}px` }}
+      >
         <img src={plus} alt="" />
       </div>
     </div>

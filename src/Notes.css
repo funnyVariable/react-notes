@@ -59,9 +59,9 @@
   padding: 15px;
   box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 30px;
-  left: 50%;
+  left: 148px;
   transform: translateX(-50%);
 }
 .notes .add-note:hover {
