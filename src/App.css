@@ -1,6 +1,6 @@
 .app {
   display: grid;
-  grid-template-columns: calc(40% - 12px) 12px 60%;
+  grid-template-columns: 296px 12px auto;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
