@@ -33,6 +33,10 @@ export default function Editor({ toggle, setToggle }) {
     currentTab ? currentTab.input : ""
   );
 
+  const noteLocalStorage = JSON.parse(
+    localStorage.getItem(`note${currentNote.id}`)
+  );
+
   function save() {
     const doesNoteExist = localStorage.getItem(`note${currentNote.id}`)
       ? true
@@ -127,7 +131,7 @@ export default function Editor({ toggle, setToggle }) {
         : setNoteTitle(currentNote.title);
     }
   }, [currentNote]);
-
+  console.log(tabs, noteLocalStorage);
   return (
     <div className="editor" ref={editor}>
       <div className="tab-bar" ref={tabBar}>
@@ -162,7 +166,13 @@ export default function Editor({ toggle, setToggle }) {
             }}
             className={tab.id === currentTabId ? "current-tab" : ""}
           >
-            {tab.title}
+            {`${tab.title}${
+              !noteLocalStorage ||
+              (tab.input && tab.input !== noteLocalStorage.text) ||
+              (tab.titleInput && tab.titleInput !== noteLocalStorage.title)
+                ? "*"
+                : ""
+            }`}
             <img
               src={xmark}
               alt=""
