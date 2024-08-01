@@ -38,6 +38,8 @@ export default function Notes({ toggle }) {
     setNotes((prev) => prev.filter((note) => note.id !== id));
     setTabs((prev) => prev.filter((tab) => tab.id !== id));
 
+    localStorage.removeItem(`note${id}`);
+
     if (currentTabId === id && nextTab) {
       setCurrentTabId(nextTab.id);
       setCurrentNote(nextTab.note);
