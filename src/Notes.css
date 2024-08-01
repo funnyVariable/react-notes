@@ -63,10 +63,16 @@
   bottom: 30px;
   left: 148px;
   transform: translateX(-50%);
+  user-select: none;
 }
 .notes .add-note:hover {
   box-shadow: 0 0 7px rgb(0, 0, 0, 0.5);
 }
 .notes .add-note img {
   width: 27px;
+}
+.notes .notes-empty-msg {
+  font-size: 14px;
+  text-align: center;
+  color: #777;
 }

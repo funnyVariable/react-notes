@@ -81,6 +81,9 @@ export default function Notes({ toggle }) {
           />
         </div>
       ))}
+      {notes.length === 0 && (
+        <p className="notes-empty-msg">You currently have no notes.</p>
+      )}
       <div
         className="add-note"
         onClick={newNote}
