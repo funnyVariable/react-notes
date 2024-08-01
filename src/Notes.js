@@ -4,7 +4,7 @@ import { EditorContext } from "./EditorContext";
 import plus from "./plus.svg";
 import xmark from "./xmark.svg";
 
-export default function Notes() {
+export default function Notes({ toggle }) {
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
@@ -60,7 +60,7 @@ export default function Notes() {
   }
 
   return (
-    <div className="notes" ref={notesRef}>
+    <div className={`notes${!toggle ? " collapsed" : ""}`} ref={notesRef}>
       {notes.map((note, key) => (
         <div
           key={key}

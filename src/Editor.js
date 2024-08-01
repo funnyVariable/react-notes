@@ -1,9 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import xmark from "./xmark.svg";
+import bars from "./bars.svg";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 
-export default function Editor() {
+export default function Editor({ toggle, setToggle }) {
   const editor = useRef(null);
   const tabBar = useRef(null);
 
@@ -180,20 +181,29 @@ export default function Editor() {
           </div>
         ))}
       </div>
-      <input
-        onChange={(e) => {
-          setNoteTitle(e.target.value);
-          setTabs((prev) => {
-            let prevv = prev;
-            if (prevv.length !== 0)
-              prevv[getTabIndexById(currentTabId)].titleInput = e.target.value;
-            return prevv;
-          });
-        }}
-        value={noteTitle}
-        type="text"
-        placeholder="Title"
-      />
+      <div className={toggle !== null ? "title-input" : null}>
+        <input
+          style={{ width: "100%" }}
+          onChange={(e) => {
+            setNoteTitle(e.target.value);
+            setTabs((prev) => {
+              let prevv = prev;
+              if (prevv.length !== 0)
+                prevv[getTabIndexById(currentTabId)].titleInput =
+                  e.target.value;
+              return prevv;
+            });
+          }}
+          value={noteTitle}
+          type="text"
+          placeholder="Title"
+        />
+        {toggle !== null && (
+          <div className="menu-toggle" onClick={() => setToggle(true)}>
+            <img src={bars} alt="" />
+          </div>
+        )}
+      </div>
       <textarea
         onChange={(e) => {
           setCurrentInput(e.target.value);

@@ -1,6 +1,6 @@
 import Notes from "./Notes";
 import Editor from "./Editor";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SliderContext } from "./SliderContext";
 import bars from "./bars.svg";
 
@@ -17,10 +17,25 @@ function App() {
   const app = useContext(SliderContext).app;
 
   const tabs = useContext(EditorContext).tabs;
+  const [toggle, setToggle] = useState(null);
+
+  useEffect(() => {
+    window.addEventListener("resize", () =>
+      setToggle(window.innerWidth < 600 ? false : null)
+    );
+    return () =>
+      window.removeEventListener(
+        "resize",
+        setToggle(window.innerWidth < 600 ? false : null)
+      );
+  }, []);
 
   return (
     <div className="app" ref={app}>
-      <Notes />
+      {toggle && (
+        <div className="overlay" onClick={() => setToggle(false)}></div>
+      )}
+      <Notes toggle={toggle} />
       <div
         className="slider"
         ref={slider}
@@ -34,7 +49,7 @@ function App() {
           <p>Select a note from notes menu to read or edit.</p>
         </div>
       ) : (
-        <Editor />
+        <Editor toggle={toggle} setToggle={setToggle} />
       )}
     </div>
   );
