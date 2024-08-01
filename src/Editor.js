@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import xmark from "./xmark.svg";
-import bars from "./bars.svg";
+import bars2 from "./bars2.svg";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 
@@ -200,7 +200,7 @@ export default function Editor({ toggle, setToggle }) {
         />
         {toggle !== null && (
           <div className="menu-toggle" onClick={() => setToggle(true)}>
-            <img src={bars} alt="" />
+            <img src={bars2} alt="" />
           </div>
         )}
       </div>
