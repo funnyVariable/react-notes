@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 import plus from "./plus.svg";
+import xmark from "./xmark.svg";
 
 export default function Notes() {
   const notes = useContext(NotesContext).notes;
@@ -10,10 +11,11 @@ export default function Notes() {
   const notesRef = useRef(null);
 
   const tabs = useContext(EditorContext).tabs;
-
+  const currentTabId = useContext(EditorContext).currentTabId;
   const setTabs = useContext(EditorContext).setTabs;
   const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
   const doesTabExist = useContext(EditorContext).doesTabExist;
+  const getTabIndexById = useContext(EditorContext).getTabIndexById;
 
   function selectNote(note) {
     setCurrentNote(note);
@@ -25,10 +27,23 @@ export default function Notes() {
           { title: note.title, note: note, id: note.id },
         ]);
   }
+
   function deleteNote(id) {
+    const nextTab = tabs[getTabIndexById(currentTabId) + 1]
+      ? tabs[getTabIndexById(currentTabId) + 1]
+      : tabs[getTabIndexById(currentTabId) - 1]
+      ? tabs[getTabIndexById(currentTabId) - 1]
+      : null;
+
     setNotes((prev) => prev.filter((note) => note.id !== id));
     setTabs((prev) => prev.filter((tab) => tab.id !== id));
+
+    if (currentTabId === id && nextTab) {
+      setCurrentTabId(nextTab.id);
+      setCurrentNote(nextTab.note);
+    }
   }
+
   function newNote() {
     const newNote = {
       title: "Untitled",
@@ -54,6 +69,14 @@ export default function Notes() {
           onClick={() => selectNote(note)}
         >
           {note.title}
+          <img
+            src={xmark}
+            alt=""
+            onClick={(e) => {
+              deleteNote(note.id);
+              e.stopPropagation();
+            }}
+          />
         </div>
       ))}
       <div

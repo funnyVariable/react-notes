@@ -38,10 +38,10 @@
   top: 0;
   left: 0;
 }
-.notes .note::after {
-  content: attr(date);
+.notes .note img {
   display: block;
   position: absolute;
+  width: 20px;
   top: 50%;
   transform: translateY(-50%);
   right: 5px;
