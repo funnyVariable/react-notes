@@ -165,9 +165,9 @@ export default function Editor({ toggle, setToggle }) {
               setCurrentNote(tab.note);
               console.log(tabs);
             }}
-            className={`${tab.id === currentTabId ? "current-tab" : ""} ${
-              isTabUnsaved(tab) ? "unsaved" : ""
-            }`}
+            className={`${
+              tab.note.id === currentNote.id ? "current-tab" : ""
+            } ${isTabUnsaved(tab) ? "unsaved" : ""}`}
           >
             {`${tab.title}${isTabUnsaved(tab) ? "*" : ""}`}
             <img

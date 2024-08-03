@@ -8,6 +8,7 @@ export default function Notes({ toggle }) {
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
+  const generateNoteId = useContext(NotesContext).generateNoteId;
   const notesRef = useRef(null);
 
   const tabs = useContext(EditorContext).tabs;
@@ -47,18 +48,16 @@ export default function Notes({ toggle }) {
   }
 
   function newNote() {
+    const id = generateNoteId();
     const newNote = {
       title: "Untitled",
       text: "",
-      id: notes.length + 1,
+      id: id,
     };
     setNotes((prev) => [...prev, newNote]);
     setCurrentNote(newNote);
-    setCurrentTabId(notes.length + 1);
-    setTabs((prev) => [
-      ...prev,
-      { title: "Untitled", note: newNote, id: notes.length + 1 },
-    ]);
+    setCurrentTabId(id);
+    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
   }
 
   return (
