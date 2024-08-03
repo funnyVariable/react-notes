@@ -54,10 +54,12 @@ export default function Notes({ toggle }) {
       text: "",
       id: id,
     };
+
     setNotes((prev) => [...prev, newNote]);
     setCurrentNote(newNote);
-    setCurrentTabId(id);
+
     setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
+    setCurrentTabId(id);
   }
 
   return (

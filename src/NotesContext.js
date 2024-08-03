@@ -20,7 +20,6 @@ export default function NotesProvider({ children }) {
       id++;
     }
     noteIdArray.current.push(id);
-    console.log(noteIdArray.current);
     return id;
   }
 

@@ -24,23 +24,25 @@ function App() {
 
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
+  const generateNoteId = useContext(NotesContext).generateNoteId;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
+
   const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
   const setTabs = useContext(EditorContext).setTabs;
 
   function newNote() {
+    const id = generateNoteId();
     const newNote = {
       title: "Untitled",
       text: "",
-      id: notes.length + 1,
+      id: id,
     };
+
     setNotes((prev) => [...prev, newNote]);
     setCurrentNote(newNote);
-    setCurrentTabId(notes.length + 1);
-    setTabs((prev) => [
-      ...prev,
-      { title: "Untitled", note: newNote, id: notes.length + 1 },
-    ]);
+
+    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
+    setCurrentTabId(id);
   }
 
   useEffect(() => {

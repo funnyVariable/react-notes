@@ -41,8 +41,8 @@
 .editor .tab-bar .unsaved {
   background-color: rgba(216, 157, 157, 0.3);
 }
-.editor .tab-bar .unsaved.current-tab {
-  background-color: rgba(216, 207, 157, 0.3);
+.editor .tab-bar .unsaved[class*="current-tab"] {
+  background-color: rgba(216, 207, 157, 0.5);
 }
 .editor input {
   font-size: 28px;

@@ -34,16 +34,8 @@ export default function Editor({ toggle, setToggle }) {
     currentTab ? currentTab.input : ""
   );
 
-  // const noteLocalStorage = JSON.parse(
-  //   localStorage.getItem(`note${currentNote.id}`)
-  // );
-
   function save() {
-    const doesNoteExist = localStorage.getItem(`note${currentNote.id}`)
-      ? true
-      : false;
-    const id = doesNoteExist ? currentNote.id : generateNoteId();
-    console.log(doesNoteExist);
+    const id = currentNote ? currentNote.id : generateNoteId();
 
     const date = new Date();
     const timeStamp = `${date.getFullYear()}/${
@@ -55,14 +47,16 @@ export default function Editor({ toggle, setToggle }) {
       date: timeStamp,
       id: id,
     };
+
     localStorage.setItem(`note${id}`, JSON.stringify(newNote));
     setNotes((prev) => prev.map((ele) => (ele.id === id ? newNote : ele)));
     setCurrentNote(newNote);
     setTabs((prev) =>
       prev.map((ele) =>
-        ele.note.id === id ? { ...currentTab, title: newNote.title } : ele
+        ele.id === id ? { ...currentTab, title: newNote.title } : ele
       )
     );
+    setCurrentTabId(id);
   }
 
   let scrollInterval;
@@ -163,7 +157,6 @@ export default function Editor({ toggle, setToggle }) {
             onClick={() => {
               setCurrentTabId(tab.id);
               setCurrentNote(tab.note);
-              console.log(tabs);
             }}
             className={`${
               tab.note.id === currentNote.id ? "current-tab" : ""
@@ -218,7 +211,6 @@ export default function Editor({ toggle, setToggle }) {
             let prevv = prev;
             if (prevv.length !== 0)
               prevv[getTabIndexById(currentTabId)].input = e.target.value;
-            console.log(tabs);
             return prevv;
           });
         }}
