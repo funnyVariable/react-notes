@@ -18,8 +18,9 @@
 }
 .editor .tab-bar div {
   padding: 10px;
-  padding-right: 20px;
-  width: 140px;
+  padding-right: 25px;
+  width: fit-content;
+  max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
   background-color: rgb(157, 178, 216, 0.3);
@@ -36,6 +37,12 @@
   right: 3px;
   top: 50%;
   transform: translateY(-50%);
+}
+.editor .tab-bar .unsaved {
+  background-color: rgba(216, 157, 157, 0.3);
+}
+.editor .tab-bar .unsaved.current-tab {
+  background-color: rgba(216, 207, 157, 0.3);
 }
 .editor input {
   font-size: 28px;

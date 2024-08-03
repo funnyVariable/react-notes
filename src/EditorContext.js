@@ -21,12 +21,22 @@ export default function EditorProvider({ children }) {
     }
     return target;
   }
+
   function getTabById(id) {
     let target = null;
     for (let i = 0; i < tabs.length; i++) {
       if (tabs[i].id === id) target = tabs[i];
     }
     return target;
+  }
+
+  function isTabUnsaved(tab) {
+    const local = JSON.parse(localStorage.getItem(`note${tab.id}`));
+    return !local ||
+      (tab.input && tab.input !== local.text) ||
+      (tab.titleInput && tab.titleInput !== local.title)
+      ? true
+      : false;
   }
 
   return (
@@ -39,6 +49,7 @@ export default function EditorProvider({ children }) {
         doesTabExist,
         getTabById,
         getTabIndexById,
+        isTabUnsaved,
       }}
     >
       {children}

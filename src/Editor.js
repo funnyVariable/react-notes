@@ -21,6 +21,7 @@ export default function Editor({ toggle, setToggle }) {
   const getTabIndexById = useContext(EditorContext).getTabIndexById;
   const getTabById = useContext(EditorContext).getTabById;
   const currentTab = getTabById(currentTabId);
+  const isTabUnsaved = useContext(EditorContext).isTabUnsaved;
 
   const scrollAreaLeft = useRef(null);
   const scrollAreaRight = useRef(null);
@@ -33,9 +34,9 @@ export default function Editor({ toggle, setToggle }) {
     currentTab ? currentTab.input : ""
   );
 
-  const noteLocalStorage = JSON.parse(
-    localStorage.getItem(`note${currentNote.id}`)
-  );
+  // const noteLocalStorage = JSON.parse(
+  //   localStorage.getItem(`note${currentNote.id}`)
+  // );
 
   function save() {
     const doesNoteExist = localStorage.getItem(`note${currentNote.id}`)
@@ -131,7 +132,7 @@ export default function Editor({ toggle, setToggle }) {
         : setNoteTitle(currentNote.title);
     }
   }, [currentNote]);
-  console.log(tabs, noteLocalStorage);
+
   return (
     <div className="editor" ref={editor}>
       <div className="tab-bar" ref={tabBar}>
@@ -164,15 +165,11 @@ export default function Editor({ toggle, setToggle }) {
               setCurrentNote(tab.note);
               console.log(tabs);
             }}
-            className={tab.id === currentTabId ? "current-tab" : ""}
-          >
-            {`${tab.title}${
-              !noteLocalStorage ||
-              (tab.input && tab.input !== noteLocalStorage.text) ||
-              (tab.titleInput && tab.titleInput !== noteLocalStorage.title)
-                ? "*"
-                : ""
+            className={`${tab.id === currentTabId ? "current-tab" : ""} ${
+              isTabUnsaved(tab) ? "unsaved" : ""
             }`}
+          >
+            {`${tab.title}${isTabUnsaved(tab) ? "*" : ""}`}
             <img
               src={xmark}
               alt=""
