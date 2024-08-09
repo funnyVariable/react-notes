@@ -5,6 +5,7 @@ import { SliderContext } from "./SliderContext";
 import bars from "./bars.svg";
 import bars2 from "./bars2.svg";
 import plus from "./plus.svg";
+import github from "./github.svg";
 import { EditorContext } from "./EditorContext";
 import { NotesContext } from "./NotesContext";
 
@@ -80,6 +81,16 @@ function App() {
                 <p>Create a new note</p>
               </div>
             )}
+
+            <div className="credits">
+              <a href="#">
+                <img src={github} alt="github" />
+                <p>Source code</p>
+              </a>
+              <p>
+                Logo designed by <a href="#">Abdulwahab Ahmed</a>
+              </p>
+            </div>
           </div>
           {!toggle && toggle !== null && (
             <div className="menu-toggle-widget" onClick={() => setToggle(true)}>
