@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import xmark from "./xmark.svg";
+import plus from "./plus.svg";
 import bars2 from "./bars2.svg";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
@@ -84,6 +85,21 @@ export default function Editor({ toggle, setToggle }) {
     clearInterval(interval);
     tabBar.current.classList.remove("scrolling-left", "scrolling-right");
     scrollLight.current.classList.remove("scroll-effect");
+  }
+
+  function newNote() {
+    const id = generateNoteId();
+    const newNote = {
+      title: "Untitled",
+      text: "",
+      id: id,
+    };
+
+    setNotes((prev) => [...prev, newNote]);
+    setCurrentNote(newNote);
+
+    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
+    setCurrentTabId(id);
   }
 
   useEffect(() => {
@@ -180,6 +196,9 @@ export default function Editor({ toggle, setToggle }) {
             />
           </div>
         ))}
+        <div className="add-tab" onClick={newNote}>
+          <img src={plus} alt="" />
+        </div>
       </div>
       <div className={toggle !== null ? "title-input" : null}>
         <input

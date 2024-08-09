@@ -110,3 +110,15 @@
   outline: none;
   cursor: pointer;
 }
+
+.add-tab {
+  position: relative;
+  padding: 0 !important;
+  width: 40px !important;
+}
+.add-tab img {
+  position: absolute;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

@@ -5,14 +5,14 @@ import { SliderContext } from "./SliderContext";
 import bars from "./bars.svg";
 import bars2 from "./bars2.svg";
 import plus from "./plus.svg";
+import { EditorContext } from "./EditorContext";
+import { NotesContext } from "./NotesContext";
 
 // CSS
 import "./Normalize.css";
 import "./App.css";
 import "./Notes.css";
 import "./Editor.css";
-import { EditorContext } from "./EditorContext";
-import { NotesContext } from "./NotesContext";
 
 function App() {
   const setHoldingSlider = useContext(SliderContext).setHoldingSlider;
