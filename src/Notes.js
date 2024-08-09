@@ -10,6 +10,7 @@ export default function Notes({ toggle }) {
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
   const generateNoteId = useContext(NotesContext).generateNoteId;
   const notesRef = useRef(null);
+  const notesWidth = notesRef.current?.offsetWidth || 230;
 
   const tabs = useContext(EditorContext).tabs;
   const currentTabId = useContext(EditorContext).currentTabId;
@@ -88,7 +89,9 @@ export default function Notes({ toggle }) {
       <div
         className="add-note"
         onClick={newNote}
-        style={{ left: `${notesRef.current?.offsetWidth / 2}px` }}
+        style={{
+          left: `${notesWidth / 2}px`,
+        }}
       >
         <img src={plus} alt="" />
       </div>
