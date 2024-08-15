@@ -8,6 +8,7 @@ import plus from "./plus.svg";
 import github from "./github.svg";
 import { EditorContext } from "./EditorContext";
 import { NotesContext } from "./NotesContext";
+import logo from "./logo.png";
 
 // CSS
 import "./Normalize.css";
@@ -73,6 +74,7 @@ function App() {
       {tabs.length === 0 ? (
         <>
           <div className="empty">
+            <img src={logo} alt="logo" className="logo" />
             <h2>No notes selected</h2>
             <p>Select a note from notes menu to read or edit.</p>
             {toggle !== null && (

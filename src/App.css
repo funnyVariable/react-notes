@@ -118,6 +118,12 @@
   width: 100%;
 }
 
+.logo {
+  width: 220px;
+  position: absolute;
+  top: 10%;
+}
+
 @media (max-width: 600px) {
   .app {
     display: block;
