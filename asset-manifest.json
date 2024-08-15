@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/react-notes/static/css/main.52a70db1.css",
-    "main.js": "/react-notes/static/js/main.18283876.js",
+    "main.css": "/react-notes/static/css/main.85af395e.css",
+    "main.js": "/react-notes/static/js/main.f308427d.js",
+    "static/media/logo.png": "/react-notes/static/media/logo.6cfe7d419b388fd8c640.png",
     "static/media/github.svg": "/react-notes/static/media/github.1cfcd4e0354397459988e9b5e4193903.svg",
+    "index.html": "/react-notes/index.html",
     "static/media/plus.svg": "/react-notes/static/media/plus.7261d138ea7eec30b4b8fc08e63cfea0.svg",
     "static/media/bars.svg": "/react-notes/static/media/bars.f0a340f43bfe69cfa7639c84cc30c5a2.svg",
     "static/media/bars2.svg": "/react-notes/static/media/bars2.f23d8757a62ab4225931837fbbaa465a.svg",
-    "index.html": "/react-notes/index.html",
     "static/media/xmark.svg": "/react-notes/static/media/xmark.5aae05091e542b3141b32cda11e0216f.svg",
-    "main.52a70db1.css.map": "/react-notes/static/css/main.52a70db1.css.map",
-    "main.18283876.js.map": "/react-notes/static/js/main.18283876.js.map"
+    "main.85af395e.css.map": "/react-notes/static/css/main.85af395e.css.map",
+    "main.f308427d.js.map": "/react-notes/static/js/main.f308427d.js.map"
   },
   "entrypoints": [
-    "static/css/main.52a70db1.css",
-    "static/js/main.18283876.js"
+    "static/css/main.85af395e.css",
+    "static/js/main.f308427d.js"
   ]
 }
