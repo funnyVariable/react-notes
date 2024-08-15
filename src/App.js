@@ -85,12 +85,15 @@ function App() {
             )}
 
             <div className="credits">
-              <a href="#">
+              <a href="https://www.github.com/uhmdkhms/react-notes">
                 <img src={github} alt="github" />
                 <p>Source code</p>
               </a>
               <p>
-                Logo designed by <a href="#">Abdulwahab Ahmed</a>
+                Logo designed by{" "}
+                <a href="https://www.instagram.com/abdelwahab_desn">
+                  Abdulwahab Ahmed
+                </a>
               </p>
             </div>
           </div>
