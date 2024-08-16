@@ -2,8 +2,6 @@ import Notes from "./Notes";
 import Editor from "./Editor";
 import { useContext, useEffect, useState } from "react";
 import { SliderContext } from "./SliderContext";
-import bars from "./bars.svg";
-import bars2 from "./bars2.svg";
 import plus from "./plus.svg";
 import github from "./github.svg";
 import { EditorContext } from "./EditorContext";
@@ -79,7 +77,7 @@ function App() {
             <p>Select a note from notes menu to read or edit.</p>
             {toggle !== null && (
               <div className="add-note-mobile" onClick={newNote}>
-                <img src={plus} alt="" />
+                <span className="plus"></span>
                 <p>Create a new note</p>
               </div>
             )}
@@ -90,7 +88,7 @@ function App() {
                 <p>Source code</p>
               </a>
               <p>
-                Logo designed by{" "}
+                Logo designed by
                 <a href="https://www.instagram.com/abdelwahab_desn">
                   Abdulwahab Ahmed
                 </a>
