@@ -82,7 +82,11 @@ export default function Editor({ toggle, setToggle }) {
 
   return (
     <div className="editor" ref={editor}>
-      <div className="tab-bar" ref={tabBar}>
+      <div
+        className="tab-bar"
+        ref={tabBar}
+        onWheel={(e) => (tabBar.current.scrollLeft -= 1 * (e.deltaY / 2))}
+      >
         {tabs.map((tab, key) => (
           <div
             key={key}
