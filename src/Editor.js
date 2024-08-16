@@ -115,7 +115,7 @@ export default function Editor({ toggle, setToggle }) {
           <img src={plus} alt="" />
         </div>
       </div>
-      <div className={toggle !== null ? "title-input" : null}>
+      <div>
         {toggle !== null && (
           <div className="menu-toggle" onClick={() => setToggle(true)}>
             <span className="bars"></span>
@@ -134,7 +134,10 @@ export default function Editor({ toggle, setToggle }) {
         }}
         value={currentInput}
       ></textarea>
-      <button className="save-button" onClick={save}>
+      <button
+        className={`save-button ${toggle !== null && "mobile"}`}
+        onClick={save}
+      >
         Save
       </button>
     </div>

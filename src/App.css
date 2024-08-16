@@ -192,22 +192,13 @@
     top: 0;
     left: 0;
   }
-  .title-input {
-    display: flex;
-  }
   .menu-toggle {
     width: 50px;
     height: 49px !important;
     border-left: solid 1px #777;
+    border-right: solid 1px #777;
     border-top: solid 1px #777;
     background-color: #fff;
     position: relative;
-  }
-  .menu-toggle img {
-    width: 32px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
   }
 }
