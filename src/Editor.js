@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import xmark from "./xmark.svg";
-import plus from "./plus.svg";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 
@@ -112,7 +111,7 @@ export default function Editor({ toggle, setToggle }) {
           </div>
         ))}
         <div className="add-tab" onClick={newNote}>
-          <img src={plus} alt="" />
+          <span className="plus"></span>
         </div>
       </div>
       <div>
