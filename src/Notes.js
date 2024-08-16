@@ -1,7 +1,6 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
-import plus from "./plus.svg";
 import xmark from "./xmark.svg";
 
 export default function Notes({ toggle }) {
@@ -93,7 +92,7 @@ export default function Notes({ toggle }) {
           left: `${notesWidth / 2}px`,
         }}
       >
-        <img src={plus} alt="" />
+        <span className="plus"></span>
       </div>
     </div>
   );

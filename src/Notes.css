@@ -38,22 +38,13 @@
   top: 0;
   left: 0;
 }
-.notes .note img {
-  display: block;
-  position: absolute;
-  width: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 5px;
-  color: rgb(122, 122, 122);
-  font-size: 14px;
-}
 
 .notes .add-note {
   background: rgb(255, 255, 255);
   background: radial-gradient(circle, #ffffff 0%, #eeeeee 100%);
   border-radius: 8px;
   display: flex;
+  height: 57px;
   justify-content: center;
   align-items: center;
   padding: 15px;
@@ -67,9 +58,6 @@
 }
 .notes .add-note:hover {
   box-shadow: 0 0 7px rgb(0, 0, 0, 0.5);
-}
-.notes .add-note img {
-  width: 27px;
 }
 .notes .notes-empty-msg {
   font-size: 14px;
