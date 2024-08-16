@@ -9,6 +9,25 @@
   height: 100vh;
 }
 
+.app .bars {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eee;
+}
+.app .bars::after,
+.app .bars::before {
+  content: "";
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background-color: inherit;
+}
+
 .notes {
   grid-area: 1 / 1 / 2 / 2;
 }
@@ -22,14 +41,13 @@
   border-right: solid rgb(147, 155, 172) 3px;
   user-select: none;
 }
-.slider img {
-  display: block;
-  position: absolute;
-  width: 40px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.slider .bars::before {
+  bottom: -18px;
 }
+.slider .bars::after {
+  top: -18px;
+}
+
 .editor {
   grid-area: 1 / 3 / 2 / 4;
 }
@@ -71,12 +89,27 @@
   right: 20px;
   cursor: pointer;
 }
-.menu-toggle-widget img {
-  width: 25px;
+.menu-toggle-widget .bars {
+  height: 5px;
+  width: 24px;
+  border-radius: 8px;
+  background-color: silver;
+}
+
+.menu-toggle-widget .bars::after,
+.menu-toggle-widget .bars::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: inherit;
+  width: inherit;
+  background-color: inherit;
+  border-radius: inherit;
+}
+.menu-toggle-widget .bars::before {
+  bottom: -9px;
+}
+.menu-toggle-widget .bars::after {
+  top: -9px;
 }
 
 .credits {

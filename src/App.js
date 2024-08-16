@@ -69,7 +69,7 @@ function App() {
         ref={slider}
         onMouseDown={() => setHoldingSlider((prev) => !prev)}
       >
-        <img src={bars} alt="" />
+        <span className="bars"></span>
       </div>
       {tabs.length === 0 ? (
         <>
@@ -99,7 +99,7 @@ function App() {
           </div>
           {!toggle && toggle !== null && (
             <div className="menu-toggle-widget" onClick={() => setToggle(true)}>
-              <img src={bars2} alt="" />
+              <span className="bars"></span>
             </div>
           )}
         </>
