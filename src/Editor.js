@@ -24,7 +24,6 @@ export default function Editor({ toggle, setToggle }) {
   const currentTab = getTabById(currentTabId);
   const isTabUnsaved = useContext(EditorContext).isTabUnsaved;
 
-  const [noteTitle, setNoteTitle] = useState("");
   const [currentInput, setCurrentInput] = useState(
     currentTab ? currentTab.input : ""
   );
@@ -37,7 +36,7 @@ export default function Editor({ toggle, setToggle }) {
       date.getMonth() + 1
     }/${date.getDate()}`;
     const newNote = {
-      title: noteTitle === "" ? "Untitled" : noteTitle,
+      title: currentInput === "" ? "Untitled" : currentInput.split("\n")[0],
       text: currentInput,
       date: timeStamp,
       id: id,
@@ -74,9 +73,6 @@ export default function Editor({ toggle, setToggle }) {
       currentTab && currentTab.input
         ? setCurrentInput(currentTab.input)
         : setCurrentInput(currentNote.text);
-      currentTab && currentTab.titleInput
-        ? setNoteTitle(currentTab.titleInput)
-        : setNoteTitle(currentNote.title);
     }
   }, [currentNote]);
 
@@ -121,22 +117,6 @@ export default function Editor({ toggle, setToggle }) {
         </div>
       </div>
       <div className={toggle !== null ? "title-input" : null}>
-        <input
-          style={{ width: "100%" }}
-          onChange={(e) => {
-            setNoteTitle(e.target.value);
-            setTabs((prev) => {
-              let prevv = prev;
-              if (prevv.length !== 0)
-                prevv[getTabIndexById(currentTabId)].titleInput =
-                  e.target.value;
-              return prevv;
-            });
-          }}
-          value={noteTitle}
-          type="text"
-          placeholder="Title"
-        />
         {toggle !== null && (
           <div className="menu-toggle" onClick={() => setToggle(true)}>
             <img src={bars2} alt="" />
