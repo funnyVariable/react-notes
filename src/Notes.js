@@ -72,14 +72,13 @@ export default function Notes({ toggle }) {
           onClick={() => selectNote(note)}
         >
           {note.title}
-          <img
-            src={xmark}
-            alt=""
+          <span
+            className="xmark"
             onClick={(e) => {
               deleteNote(note.id);
               e.stopPropagation();
             }}
-          />
+          ></span>
         </div>
       ))}
       {notes.length === 0 && (

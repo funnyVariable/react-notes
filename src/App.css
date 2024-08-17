@@ -45,6 +45,23 @@
   background-color: inherit;
   border-radius: inherit;
 }
+.app .xmark {
+  display: inline-block;
+  height: 14px;
+  width: 3px;
+  background-color: #ff4545;
+  position: absolute;
+  rotate: 45deg;
+}
+.app .xmark::before {
+  content: "";
+  height: inherit;
+  width: inherit;
+  background-color: inherit;
+  border-radius: inherit;
+  position: absolute;
+  rotate: -90deg;
+}
 
 .notes {
   grid-area: 1 / 1 / 2 / 2;

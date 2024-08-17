@@ -24,6 +24,13 @@
   line-break: anywhere;
 }
 
+.notes .note .xmark {
+  height: 22px;
+  width: 5px;
+  right: 15px;
+  top: 8px;
+}
+
 .notes .note:hover {
   box-shadow: 0 0 4px rgb(0, 0, 0, 0.5);
 }
