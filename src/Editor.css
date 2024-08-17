@@ -111,3 +111,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.tab-bar .xmark {
+  right: 12.5px;
+  top: 13px;
+}

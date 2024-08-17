@@ -1,7 +1,6 @@
 import { useContext, useRef } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
-import xmark from "./xmark.svg";
 
 export default function Notes({ toggle }) {
   const notes = useContext(NotesContext).notes;

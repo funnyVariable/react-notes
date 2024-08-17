@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import xmark from "./xmark.svg";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 
@@ -93,9 +92,8 @@ export default function Editor({ toggle, setToggle }) {
             } ${isTabUnsaved(tab) ? "unsaved" : ""}`}
           >
             {`${tab.title}${isTabUnsaved(tab) ? "*" : ""}`}
-            <img
-              src={xmark}
-              alt=""
+            <span
+              className="xmark"
               onClick={(e) => {
                 setTabs((prev) => prev.filter((tab2, key2) => key2 !== key));
                 if (tabs[key + 1]) {
@@ -107,7 +105,7 @@ export default function Editor({ toggle, setToggle }) {
                 } else setCurrentTabId(null);
                 e.stopPropagation();
               }}
-            />
+            ></span>
           </div>
         ))}
         <div className="add-tab" onClick={newNote}>
