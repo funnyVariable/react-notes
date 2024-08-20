@@ -1,12 +1,19 @@
 .notes {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
   gap: 13px;
   padding: 13px;
   width: 100%;
   overflow-y: auto;
   background-color: #f4f7fd;
   position: relative;
+}
+
+.notes::-webkit-scrollbar {
+  opacity: 0;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .notes .note {
@@ -16,7 +23,7 @@
   background-color: #ffff88;
   min-height: 54px;
   max-height: 80px;
-  max-width: 270px;
+  width: 240px;
   cursor: pointer;
   position: relative;
   box-shadow: 0 0 3px rgb(0, 0, 0, 0.3);
