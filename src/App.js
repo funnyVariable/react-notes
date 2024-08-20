@@ -22,7 +22,6 @@ function App() {
   const tabs = useContext(EditorContext).tabs;
   const [toggle, setToggle] = useState(false);
 
-  const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const generateNoteId = useContext(NotesContext).generateNoteId;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
