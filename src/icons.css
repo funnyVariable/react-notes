@@ -1,0 +1,58 @@
+.bars {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eee;
+}
+.bars::after,
+.bars::before {
+  content: "";
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background-color: inherit;
+}
+
+/* ------------------------- */
+
+.plus {
+  width: 30px;
+  height: 7px;
+  border-radius: 8px;
+  position: relative;
+  background-color: #0cb300;
+}
+.plus::before {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  left: 0;
+  rotate: 90deg;
+  background-color: inherit;
+  border-radius: inherit;
+}
+
+/* ------------------------- */
+
+.xmark {
+  display: inline-block;
+  height: 14px;
+  width: 3px;
+  background-color: #ff4545;
+  position: absolute;
+  rotate: 45deg;
+}
+.xmark::before {
+  content: "";
+  height: inherit;
+  width: inherit;
+  background-color: inherit;
+  border-radius: inherit;
+  position: absolute;
+  rotate: -90deg;
+}

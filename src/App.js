@@ -12,6 +12,7 @@ import "./Normalize.css";
 import "./App.css";
 import "./Notes.css";
 import "./Editor.css";
+import "./icons.css";
 
 function App() {
   const setHoldingSlider = useContext(SliderContext).setHoldingSlider;
