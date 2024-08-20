@@ -19,7 +19,7 @@ function App() {
   const app = useContext(SliderContext).app;
 
   const tabs = useContext(EditorContext).tabs;
-  const [toggle, setToggle] = useState(null);
+  const [toggle, setToggle] = useState(false);
 
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
