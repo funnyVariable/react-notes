@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-notes/static/css/main.c508aad8.css",
-    "main.js": "/react-notes/static/js/main.edb858a1.js",
+    "main.js": "/react-notes/static/js/main.8ccc5090.js",
     "static/media/logo.png": "/react-notes/static/media/logo.6cfe7d419b388fd8c640.png",
     "static/media/github.svg": "/react-notes/static/media/github.52bb26ff219ce713a30a221c10c0a8c6.svg",
     "index.html": "/react-notes/index.html",
     "main.c508aad8.css.map": "/react-notes/static/css/main.c508aad8.css.map",
-    "main.edb858a1.js.map": "/react-notes/static/js/main.edb858a1.js.map"
+    "main.8ccc5090.js.map": "/react-notes/static/js/main.8ccc5090.js.map"
   },
   "entrypoints": [
     "static/css/main.c508aad8.css",
-    "static/js/main.edb858a1.js"
+    "static/js/main.8ccc5090.js"
   ]
 }
