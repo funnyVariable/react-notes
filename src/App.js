@@ -20,7 +20,7 @@ function App() {
   const app = useContext(SliderContext).app;
 
   const tabs = useContext(EditorContext).tabs;
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(window.innerWidth < 600 ? false : null);
 
   const setNotes = useContext(NotesContext).setNotes;
   const generateNoteId = useContext(NotesContext).generateNoteId;
