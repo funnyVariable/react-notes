@@ -1,3 +1,4 @@
+/* Notes Main div */
 .notes {
   display: flex;
   flex-wrap: wrap;
@@ -16,6 +17,7 @@
   scrollbar-width: none; /* Firefox */
 }
 
+/* Notes */
 .notes .note {
   padding: 17px;
   padding-left: 22px;
@@ -30,18 +32,15 @@
   overflow: hidden;
   line-break: anywhere;
 }
-
 .notes .note .xmark {
   height: 17px;
   width: 4px;
   right: 15px;
   top: 8px;
 }
-
 .notes .note:hover {
   box-shadow: 0 0 4px rgb(0, 0, 0, 0.5);
 }
-
 .notes .note::before {
   content: "";
   display: block;
@@ -53,6 +52,7 @@
   left: 0;
 }
 
+/* Add note button */
 .notes .add-note {
   background: rgb(255, 255, 255);
   background: radial-gradient(circle, #ffffff 0%, #eeeeee 100%);
@@ -73,6 +73,8 @@
 .notes .add-note:hover {
   box-shadow: 0 0 7px rgb(0, 0, 0, 0.5);
 }
+
+/* No Notes message */
 .notes .notes-empty-msg {
   font-size: 14px;
   text-align: center;
