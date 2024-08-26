@@ -6,7 +6,8 @@ export default function Notes({ toggle }) {
   const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
-  const generateNoteId = useContext(NotesContext).generateNoteId;
+  const newNote = useContext(NotesContext).newNote;
+
   const notesRef = useRef(null);
   const notesWidth = notesRef.current?.offsetWidth || 230;
 
@@ -46,21 +47,6 @@ export default function Notes({ toggle }) {
     }
   }
 
-  function newNote() {
-    const id = generateNoteId();
-    const newNote = {
-      title: "Untitled",
-      text: "",
-      id: id,
-    };
-
-    setNotes((prev) => [...prev, newNote]);
-    setCurrentNote(newNote);
-
-    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
-    setCurrentTabId(id);
-  }
-
   return (
     <div className={`notes${!toggle ? " collapsed" : ""}`} ref={notesRef}>
       {notes.map((note, key) => (
@@ -85,7 +71,7 @@ export default function Notes({ toggle }) {
       )}
       <div
         className="add-note"
-        onClick={newNote}
+        onClick={() => newNote(setTabs, setCurrentTabId)}
         style={{
           left: `${notesWidth / 2}px`,
         }}

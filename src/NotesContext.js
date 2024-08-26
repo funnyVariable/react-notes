@@ -23,9 +23,31 @@ export default function NotesProvider({ children }) {
     return id;
   }
 
+  function newNote(setTabs, setCurrentTabId) {
+    const id = generateNoteId();
+    const newNote = {
+      title: "Untitled",
+      text: "",
+      id: id,
+    };
+
+    setNotes((prev) => [...prev, newNote]);
+    setCurrentNote(newNote);
+
+    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
+    setCurrentTabId(id);
+  }
+
   return (
     <NotesContext.Provider
-      value={{ notes, setNotes, currentNote, setCurrentNote, generateNoteId }}
+      value={{
+        notes,
+        setNotes,
+        newNote,
+        currentNote,
+        setCurrentNote,
+        generateNoteId,
+      }}
     >
       {children}
     </NotesContext.Provider>

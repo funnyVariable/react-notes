@@ -6,11 +6,11 @@ export default function Editor({ toggle, setToggle }) {
   const editor = useRef(null);
   const tabBar = useRef(null);
 
-  const notes = useContext(NotesContext).notes;
   const setNotes = useContext(NotesContext).setNotes;
   const currentNote = useContext(NotesContext).currentNote;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
   const generateNoteId = useContext(NotesContext).generateNoteId;
+  const newNote = useContext(NotesContext).newNote;
 
   const tabs = useContext(EditorContext).tabs;
   const setTabs = useContext(EditorContext).setTabs;
@@ -50,28 +50,13 @@ export default function Editor({ toggle, setToggle }) {
     setCurrentTabId(id);
   }
 
-  function newNote() {
-    const id = generateNoteId();
-    const newNote = {
-      title: "Untitled",
-      text: "",
-      id: id,
-    };
-
-    setNotes((prev) => [...prev, newNote]);
-    setCurrentNote(newNote);
-
-    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
-    setCurrentTabId(id);
-  }
-
   useEffect(() => {
     if (currentNote) {
       currentTab && currentTab.input
         ? setCurrentInput(currentTab.input)
         : setCurrentInput(currentNote.text);
     }
-  }, [currentNote]);
+  }, [currentTab, currentNote]);
 
   return (
     <div className="editor" ref={editor}>
@@ -108,7 +93,10 @@ export default function Editor({ toggle, setToggle }) {
             ></span>
           </div>
         ))}
-        <div className="add-tab" onClick={newNote}>
+        <div
+          className="add-tab"
+          onClick={() => newNote(setTabs, setCurrentTabId)}
+        >
           <span className="plus"></span>
         </div>
       </div>

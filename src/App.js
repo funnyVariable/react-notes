@@ -22,27 +22,10 @@ function App() {
   const tabs = useContext(EditorContext).tabs;
   const [toggle, setToggle] = useState(window.innerWidth < 600 ? false : null);
 
-  const setNotes = useContext(NotesContext).setNotes;
-  const generateNoteId = useContext(NotesContext).generateNoteId;
-  const setCurrentNote = useContext(NotesContext).setCurrentNote;
+  const newNote = useContext(NotesContext).newNote;
 
   const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
   const setTabs = useContext(EditorContext).setTabs;
-
-  function newNote() {
-    const id = generateNoteId();
-    const newNote = {
-      title: "Untitled",
-      text: "",
-      id: id,
-    };
-
-    setNotes((prev) => [...prev, newNote]);
-    setCurrentNote(newNote);
-
-    setTabs((prev) => [...prev, { title: "Untitled", note: newNote, id: id }]);
-    setCurrentTabId(id);
-  }
 
   useEffect(() => {
     window.addEventListener("resize", () =>
@@ -75,7 +58,10 @@ function App() {
             <h2>No notes selected</h2>
             <p>Select a note from notes menu to read or edit.</p>
             {toggle !== null && (
-              <div className="add-note-mobile" onClick={newNote}>
+              <div
+                className="add-note-mobile"
+                onClick={() => newNote(setTabs, setCurrentTabId)}
+              >
                 <span className="plus"></span>
                 <p>Create a new note</p>
               </div>
