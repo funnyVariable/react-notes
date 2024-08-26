@@ -1,11 +1,9 @@
 import Notes from "./Notes";
 import Editor from "./Editor";
+import Empty from "./Empty";
 import { useContext, useEffect, useState } from "react";
 import { SliderContext } from "./SliderContext";
-import github from "./github.svg";
 import { EditorContext } from "./EditorContext";
-import { NotesContext } from "./NotesContext";
-import logo from "./logo.png";
 
 // CSS
 import "./Normalize.css";
@@ -21,11 +19,6 @@ function App() {
 
   const tabs = useContext(EditorContext).tabs;
   const [toggle, setToggle] = useState(window.innerWidth < 600 ? false : null);
-
-  const newNote = useContext(NotesContext).newNote;
-
-  const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
-  const setTabs = useContext(EditorContext).setTabs;
 
   useEffect(() => {
     window.addEventListener("resize", () =>
@@ -52,40 +45,7 @@ function App() {
         <span className="bars"></span>
       </div>
       {tabs.length === 0 ? (
-        <>
-          <div className="empty">
-            <img src={logo} alt="logo" className="logo" />
-            <h2>No notes selected</h2>
-            <p>Select a note from notes menu to read or edit.</p>
-            {toggle !== null && (
-              <div
-                className="add-note-mobile"
-                onClick={() => newNote(setTabs, setCurrentTabId)}
-              >
-                <span className="plus"></span>
-                <p>Create a new note</p>
-              </div>
-            )}
-
-            <div className="credits">
-              <a href="https://www.github.com/uhmdkhms/react-notes">
-                <img src={github} alt="github" />
-                <p>Source code</p>
-              </a>
-              <p>
-                Logo designed by{" "}
-                <a href="https://www.instagram.com/abdelwahab_desn">
-                  Abdulwahab Ahmed
-                </a>
-              </p>
-            </div>
-          </div>
-          {!toggle && toggle !== null && (
-            <div className="menu-toggle-widget" onClick={() => setToggle(true)}>
-              <span className="bars"></span>
-            </div>
-          )}
-        </>
+        <Empty toggle={toggle} setToggle={setToggle} />
       ) : (
         <Editor toggle={toggle} setToggle={setToggle} />
       )}
