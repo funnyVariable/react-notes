@@ -9,7 +9,7 @@ export default function Notes({ toggle }) {
   const newNote = useContext(NotesContext).newNote;
 
   const notesRef = useRef(null);
-  const notesWidth = notesRef.current?.offsetWidth || 230;
+  const notesWidth = notesRef.current?.offsetWidth || 296;
 
   const tabs = useContext(EditorContext).tabs;
   const currentTabId = useContext(EditorContext).currentTabId;
