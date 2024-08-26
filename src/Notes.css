@@ -52,6 +52,18 @@
   left: 0;
 }
 
+/* Timestamp */
+.notes .note::after {
+  content: attr(date);
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  right: 4px;
+  bottom: 4px;
+  color: #555;
+  opacity: 0.5;
+}
+
 /* Add note button */
 .notes .add-note {
   background: rgb(255, 255, 255);
