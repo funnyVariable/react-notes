@@ -1,25 +1,22 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
+import TabBar from "./TabBar";
 
 export default function Editor({ toggle, setToggle }) {
   const editor = useRef(null);
-  const tabBar = useRef(null);
 
   const setNotes = useContext(NotesContext).setNotes;
   const currentNote = useContext(NotesContext).currentNote;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
   const generateNoteId = useContext(NotesContext).generateNoteId;
-  const newNote = useContext(NotesContext).newNote;
 
-  const tabs = useContext(EditorContext).tabs;
   const setTabs = useContext(EditorContext).setTabs;
   const currentTabId = useContext(EditorContext).currentTabId;
   const setCurrentTabId = useContext(EditorContext).setCurrentTabId;
   const getTabIndexById = useContext(EditorContext).getTabIndexById;
   const getTabById = useContext(EditorContext).getTabById;
   const currentTab = getTabById(currentTabId);
-  const isTabUnsaved = useContext(EditorContext).isTabUnsaved;
 
   const [currentInput, setCurrentInput] = useState(
     currentTab ? currentTab.input : ""
@@ -60,46 +57,7 @@ export default function Editor({ toggle, setToggle }) {
 
   return (
     <div className="editor" ref={editor}>
-      <div
-        className="tab-bar"
-        ref={tabBar}
-        onWheel={(e) => (tabBar.current.scrollLeft -= 1 * (e.deltaY / 2))}
-      >
-        {tabs.map((tab, key) => (
-          <div
-            key={key}
-            onClick={() => {
-              setCurrentTabId(tab.id);
-              setCurrentNote(tab.note);
-            }}
-            className={`${
-              tab.note.id === currentNote.id ? "current-tab" : ""
-            } ${isTabUnsaved(tab) ? "unsaved" : ""}`}
-          >
-            {`${tab.title}${isTabUnsaved(tab) ? "*" : ""}`}
-            <span
-              className="xmark"
-              onClick={(e) => {
-                setTabs((prev) => prev.filter((tab2, key2) => key2 !== key));
-                if (tabs[key + 1]) {
-                  setCurrentTabId(tabs[key + 1].id);
-                  setCurrentNote(tabs[key + 1].note);
-                } else if (tabs[key - 1]) {
-                  setCurrentTabId(tabs[key - 1].id);
-                  setCurrentNote(tabs[key - 1].note);
-                } else setCurrentTabId(null);
-                e.stopPropagation();
-              }}
-            ></span>
-          </div>
-        ))}
-        <div
-          className="add-tab"
-          onClick={() => newNote(setTabs, setCurrentTabId)}
-        >
-          <span className="plus"></span>
-        </div>
-      </div>
+      <TabBar />
       <div>
         {toggle !== null && (
           <div className="menu-toggle" onClick={() => setToggle(true)}>
