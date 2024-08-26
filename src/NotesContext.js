@@ -6,8 +6,13 @@ export default function NotesProvider({ children }) {
   let noteArray = [];
 
   for (let i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i).match(/note\d+/))
-      noteArray.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+    if (localStorage.key(i).match(/note\d+/)) {
+      try {
+        noteArray.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+      } catch {
+        continue;
+      }
+    }
   }
 
   const [notes, setNotes] = useState(noteArray);

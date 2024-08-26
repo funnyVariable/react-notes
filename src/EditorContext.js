@@ -31,12 +31,16 @@ export default function EditorProvider({ children }) {
   }
 
   function isTabUnsaved(tab) {
-    const local = JSON.parse(localStorage.getItem(`note${tab.id}`));
-    return !local ||
-      (tab.input && tab.input !== local.text) ||
-      (tab.titleInput && tab.titleInput !== local.title)
-      ? true
-      : false;
+    try {
+      const local = JSON.parse(localStorage.getItem(`note${tab.id}`));
+      return !local ||
+        (tab.input && tab.input !== local.text) ||
+        (tab.titleInput && tab.titleInput !== local.title)
+        ? true
+        : false;
+    } catch {
+      return false;
+    }
   }
 
   return (
