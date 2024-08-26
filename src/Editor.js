@@ -47,6 +47,16 @@ export default function Editor({ toggle, setToggle }) {
     setCurrentTabId(id);
   }
 
+  function inputHandler(e) {
+    setCurrentInput(e.target.value);
+    setTabs((prev) => {
+      let prevv = prev;
+      if (prevv.length !== 0)
+        prevv[getTabIndexById(currentTabId)].input = e.target.value;
+      return prevv;
+    });
+  }
+
   useEffect(() => {
     if (currentNote) {
       currentTab && currentTab.input
@@ -65,18 +75,7 @@ export default function Editor({ toggle, setToggle }) {
           </div>
         )}
       </div>
-      <textarea
-        onChange={(e) => {
-          setCurrentInput(e.target.value);
-          setTabs((prev) => {
-            let prevv = prev;
-            if (prevv.length !== 0)
-              prevv[getTabIndexById(currentTabId)].input = e.target.value;
-            return prevv;
-          });
-        }}
-        value={currentInput}
-      ></textarea>
+      <textarea onChange={inputHandler} value={currentInput}></textarea>
       <button
         className={`save-button ${toggle !== null && "mobile"}`}
         onClick={save}
