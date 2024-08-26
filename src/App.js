@@ -36,14 +36,19 @@ function App() {
       {toggle && (
         <div className="overlay" onClick={() => setToggle(false)}></div>
       )}
+
       <Notes toggle={toggle} />
-      <div
-        className="slider"
-        ref={slider}
-        onMouseDown={() => setHoldingSlider((prev) => !prev)}
-      >
-        <span className="bars"></span>
-      </div>
+
+      {toggle === null && (
+        <div
+          className="slider"
+          ref={slider}
+          onMouseDown={() => setHoldingSlider((prev) => !prev)}
+        >
+          <span className="bars"></span>
+        </div>
+      )}
+
       {tabs.length === 0 ? (
         <Empty toggle={toggle} setToggle={setToggle} />
       ) : (

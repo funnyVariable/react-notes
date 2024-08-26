@@ -67,12 +67,6 @@
   top: -18px;
 }
 
-@media (max-width: 600px) {
-  .slider {
-    display: none;
-  }
-}
-
 /* --- Slider End --- */
 
 /* --- Editor --- */
