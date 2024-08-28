@@ -1,8 +1,7 @@
 import Notes from "./Notes";
 import Editor from "./Editor";
 import Empty from "./Empty";
-import { useContext, useEffect, useState } from "react";
-import { SliderContext } from "./SliderContext";
+import { useContext, useEffect, useRef, useState } from "react";
 import { EditorContext } from "./EditorContext";
 
 // CSS
@@ -13,7 +12,7 @@ import "./Editor.css";
 import Slider from "./Slider";
 
 function App() {
-  const app = useContext(SliderContext).app;
+  const app = useRef(null);
 
   const tabs = useContext(EditorContext).tabs;
   const [toggle, setToggle] = useState(window.innerWidth < 600 ? false : null);
