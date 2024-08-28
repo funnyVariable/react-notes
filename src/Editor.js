@@ -76,7 +76,7 @@ export default function Editor({ toggle, setToggle }) {
           </div>
         )}
       </div>
-      <textarea onChange={inputHandler} value={currentInput}></textarea>
+      <textarea name="textarea" onChange={inputHandler} value={currentInput}></textarea>
       <button
         className={`save-button ${toggle !== null && "mobile"}`}
         onClick={save}
