@@ -1,5 +1,7 @@
 import logo from "./logo.png";
+import bars from "./bars.svg";
 import github from "./github.svg";
+import plus from "./plus.svg";
 import { useContext } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
@@ -21,7 +23,7 @@ export default function Empty({ toggle, setToggle }) {
             className="add-note-mobile"
             onClick={() => newNote(setTabs, setCurrentTabId)}
           >
-            <span className="plus"></span>
+            <img src={plus} alt="plus" />
             <p>Create a new note</p>
           </div>
         )}
@@ -41,7 +43,7 @@ export default function Empty({ toggle, setToggle }) {
       </div>
       {!toggle && toggle !== null && (
         <div className="menu-toggle-widget" onClick={() => setToggle(true)}>
-          <span className="bars"></span>
+          <img src={bars} alt="bars" />
         </div>
       )}
     </>

@@ -1,6 +1,8 @@
 import { useContext, useRef } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
+import plus from "./plus.svg";
+import xmark from "./xmark.svg";
 
 export default function TabBar() {
   const tabBar = useRef(null);
@@ -8,7 +10,7 @@ export default function TabBar() {
   const tabs = useContext(EditorContext).tabs;
   const isTabUnsaved = useContext(EditorContext).isTabUnsaved;
   const setTabs = useContext(EditorContext).setTabs;
-  
+
   const currentNote = useContext(NotesContext).currentNote;
   const setCurrentNote = useContext(NotesContext).setCurrentNote;
 
@@ -46,14 +48,14 @@ export default function TabBar() {
           }`}
         >
           {`${tab.title}${isTabUnsaved(tab) ? "*" : ""}`}
-          <span className="xmark" onClick={(e) => closeTab(e, key)}></span>
+          <img src={xmark} onClick={(e) => closeTab(e, key)} />
         </div>
       ))}
       <div
         className="add-tab"
         onClick={() => newNote(setTabs, setCurrentTabId)}
       >
-        <span className="plus"></span>
+        <img src={plus} alt="plus" />
       </div>
     </div>
   );

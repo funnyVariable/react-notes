@@ -1,6 +1,8 @@
 import { useContext, useRef } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
+import xmark from "./xmark.svg";
+import plus from "./plus.svg";
 
 export default function Notes({ toggle }) {
   const notes = useContext(NotesContext).notes;
@@ -57,13 +59,13 @@ export default function Notes({ toggle }) {
           onClick={() => selectNote(note)}
         >
           {note.title}
-          <span
-            className="xmark"
+          <img
+            src={xmark}
             onClick={(e) => {
               deleteNote(note.id);
               e.stopPropagation();
             }}
-          ></span>
+          />
         </div>
       ))}
       {notes.length === 0 && (
@@ -76,7 +78,7 @@ export default function Notes({ toggle }) {
           left: `${notesWidth / 2}px`,
         }}
       >
-        <span className="plus"></span>
+        <img src={plus} alt="plus" />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { NotesContext } from "./NotesContext";
 import { EditorContext } from "./EditorContext";
 import TabBar from "./TabBar";
+import bars from "./bars.svg";
 
 export default function Editor({ toggle, setToggle }) {
   const editor = useRef(null);
@@ -71,7 +72,7 @@ export default function Editor({ toggle, setToggle }) {
       <div>
         {toggle !== null && (
           <div className="menu-toggle" onClick={() => setToggle(true)}>
-            <span className="bars"></span>
+            <img src={bars} alt="bars" />
           </div>
         )}
       </div>

@@ -84,7 +84,7 @@
 .editor .tab-bar .current-tab {
   background-color: #eee;
 }
-.editor .tab-bar div img {
+.editor .tab-bar div:not([class*="add-tab"]) img {
   width: 20px;
   position: absolute;
   right: 3px;
@@ -108,17 +108,12 @@
   background-color: #f8f8f8 !important;
   box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
 }
-.add-tab .plus {
+.editor .add-tab img {
   position: absolute;
   width: 20px;
-  height: 4px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-}
-.tab-bar .xmark {
-  right: 12.5px;
-  top: 13px;
 }
 
 /* --- Tab bar End --- */

@@ -32,11 +32,11 @@
   overflow: hidden;
   line-break: anywhere;
 }
-.notes .note .xmark {
-  height: 17px;
-  width: 4px;
-  right: 15px;
-  top: 8px;
+.notes .note img {
+  position: absolute;
+  width: 24px;
+  right: 4px;
+  top: 4px;
 }
 .notes .note:hover {
   box-shadow: 0 0 4px rgb(0, 0, 0, 0.5);
@@ -84,6 +84,9 @@
 }
 .notes .add-note:hover {
   box-shadow: 0 0 7px rgb(0, 0, 0, 0.5);
+}
+.notes .add-note img {
+  width: 30px;
 }
 
 /* No Notes message */
