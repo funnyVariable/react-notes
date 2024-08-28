@@ -61,6 +61,7 @@ export default function Notes({ toggle }) {
           {note.title}
           <img
             src={xmark}
+            alt="xmark"
             onClick={(e) => {
               deleteNote(note.id);
               e.stopPropagation();

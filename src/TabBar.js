@@ -48,7 +48,7 @@ export default function TabBar() {
           }`}
         >
           {`${tab.title}${isTabUnsaved(tab) ? "*" : ""}`}
-          <img src={xmark} onClick={(e) => closeTab(e, key)} />
+          <img src={xmark} alt="xmark" onClick={(e) => closeTab(e, key)} />
         </div>
       ))}
       <div
