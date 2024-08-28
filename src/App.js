@@ -10,10 +10,9 @@ import "./Normalize.css";
 import "./App.css";
 import "./Notes.css";
 import "./Editor.css";
+import Slider from "./Slider";
 
 function App() {
-  const setHoldingSlider = useContext(SliderContext).setHoldingSlider;
-  const slider = useContext(SliderContext).slider;
   const app = useContext(SliderContext).app;
 
   const tabs = useContext(EditorContext).tabs;
@@ -38,15 +37,7 @@ function App() {
 
       <Notes toggle={toggle} />
 
-      {toggle === null && (
-        <div
-          className="slider"
-          ref={slider}
-          onMouseDown={() => setHoldingSlider((prev) => !prev)}
-        >
-          <span className="bars"></span>
-        </div>
-      )}
+      {toggle === null && <Slider app={app} />}
 
       {tabs.length === 0 ? (
         <Empty toggle={toggle} setToggle={setToggle} />
